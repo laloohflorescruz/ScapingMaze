@@ -7,17 +7,26 @@ public class Patroller : MonoBehaviour
     //Consts:
     private const float rotationSlerpAmount = .68f;
 
+
+    // References
     [Header("References")]
-    public Transform trans;
-    public Transform modelHolder;
+    public Transform trans; // Reference to own Transform
+    public Transform modelHolder; // Reference to model Transform
 
+    // Stats
     [Header("Stats")]
-    public float movespeed = 30;
+    public float movespeed = 30; // Movement speed
 
-    //Private variables:
-    private int currentPointIndex;
-    private Transform currentPoint;
-    private Transform[] patrolPoints;
+    // Private variables
+    private int currentPointIndex; // Index of current patrol point
+    private Transform currentPoint; // Reference to current patrol point
+    private Transform[] patrolPoints; // Array of patrol points
+
+
+
+    public Transform[] arrayOfTransforms = new Transform[5]; // Array to store patrol points
+
+
 
     //Returns a List containing the Transform of each child with a name that starts with "Patrol Point (".
     private List<Transform> GetUnsortedPatrolPoints()
@@ -51,6 +60,11 @@ public class Patroller : MonoBehaviour
 
     void Start()
     {
+        // Accessing the first Transform in the array
+        Transform first = arrayOfTransforms[0];
+
+
+
         //Get an unsorted list of patrol points:
         List<Transform> points = GetUnsortedPatrolPoints();
 
@@ -91,31 +105,32 @@ public class Patroller : MonoBehaviour
 
     void Update()
     {
-        //Only operate if we have a currentPoint:
+        // Only operate if we have a currentPoint
         if (currentPoint != null)
         {
-            //Move root GameObject towards the current point:
+            // Move root GameObject towards the current point
             trans.position = Vector3.MoveTowards(trans.position, currentPoint.position, movespeed * Time.deltaTime);
 
-            //If we're on top of the point already, change the current point:
+            // If we're on top of the point already, change the current point
             if (trans.position == currentPoint.position)
             {
-                //If we're at the last patrol point...:
+                // If we're at the last patrol point...
                 if (currentPointIndex >= patrolPoints.Length - 1)
                 {
-                    //...we'll set to the first patrol point (double back):
+                    // ...we'll set to the first patrol point (double back)
                     SetCurrentPatrolPoint(0);
                 }
-                else //Else if we're not at the last patrol point
-                    SetCurrentPatrolPoint(currentPointIndex + 1); //Go to the index after the current.
+                else // Else if we're not at the last patrol point
+                {
+                    SetCurrentPatrolPoint(currentPointIndex + 1); // Go to the index after the current
+                }
             }
-            //Else if we're not on the point yet, rotate the model towards it:
-            else
+            else // Else if we're not on the point yet, rotate the model towards it
             {
                 Quaternion lookRotation = Quaternion.LookRotation((currentPoint.position - trans.position).normalized);
-
                 modelHolder.rotation = Quaternion.Slerp(modelHolder.rotation, lookRotation, rotationSlerpAmount);
             }
         }
+
     }
 }

@@ -24,7 +24,8 @@ public class Projectile : MonoBehaviour
         trans.Translate(0, 0, speed * Time.deltaTime, Space.Self);
 
         // Destroy the projectile if it has traveled to or past its range:
-        if (Vector3.Distance(trans.position, spawnPoint) >= range)
+        if (Vector3.Distance(trans.position, transform.parent.position) >= range)
+        //if (Vector3.Distance(trans.position, spawnPoint) >= range)
         {
             Destroy(gameObject);
         }

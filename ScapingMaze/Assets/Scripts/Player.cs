@@ -28,6 +28,8 @@ public class Player : MonoBehaviour
 
     private Vector3 movementVelocity = Vector3.zero;
 
+    [Tooltip("Time after dashing finishes before it can be performed again.")]
+    public float dashCooldown = 1.8f;
 
     // Death and Respawning Variables
     [Header("Death and Respawning")]
@@ -42,19 +44,84 @@ public class Player : MonoBehaviour
     public int layer2; // The second layer
     public bool ignore; // Set to true to ignore collisions, false to enable collisions
 
+    [Header("Dashing")]
+    [Tooltip("Total distance traveled during a dash.")]
+
+
 
     private Quaternion spawnRotation;
     void Start()
     {
         spawnPoint = transform.position;
         spawnRotation = modelTrans.rotation;
-        Rigidbody rb = gameObject.AddComponent<Rigidbody>();
-        rb.isKinematic = true;
+        // Rigidbody rb = gameObject.AddComponent<Rigidbody>();
+        // rb.isKinematic = true;
         gameObject.layer = LayerMask.NameToLayer("LayerName");
         Physics.IgnoreLayerCollision(layer1, layer2, ignore);
 
+    }
 
 
+    private bool CanDashNow
+    {
+
+        get
+        {
+            return (Time.time > dashBeginTime + dashTime + dashCooldown);
+        }
+
+
+    }
+
+
+    public float dashDistance = 17;
+    [Tooltip("Time taken for a dash (in seconds).")]
+    public float dashTime = .26f;
+
+    private bool IsDashing
+    {
+
+        get
+        {
+            return (Time.time < dashBeginTime + dashTime);
+        }
+    }
+
+    private Vector3 dashDirection;
+    private float dashBeginTime = Mathf.NegativeInfinity;
+
+    private void Dashing()
+    {
+        if (!IsDashing && CanDashNow)
+        //If not dashing right now
+        {
+            if (Input.GetKey(KeyCode.Space)) //If space key is pressed
+            {
+                Vector3 movementDir = Vector3.zero;
+
+                if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
+                    movementDir.z = 1;
+                else if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
+                    movementDir.z = -1;
+
+                if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
+                    movementDir.x = 1;
+                else if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
+                    movementDir.x = -1;
+
+                if (movementDir.x != 0 || movementDir.z != 0)
+                {
+                    dashDirection = movementDir;
+                    dashBeginTime = Time.time;
+                    movementVelocity = dashDirection * movespeed;
+                    modelTrans.forward = dashDirection;
+                }
+            }
+        }
+        else //If dashing
+        {
+            characterController.Move(dashDirection * (dashDistance / dashTime) * Time.deltaTime);
+        }
     }
 
 
@@ -127,10 +194,11 @@ public class Player : MonoBehaviour
     // Call the Movement method in the Update method
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.T))
-            Die();
+
 
         Movement();
+        Dashing();
+
     }
 
     public void Die()
@@ -144,6 +212,8 @@ public class Player : MonoBehaviour
             characterController.enabled = false;
             modelTrans.gameObject.SetActive(false);
         }
+        dashBeginTime = Mathf.NegativeInfinity;
+
     }
     public void Respawn()
     {

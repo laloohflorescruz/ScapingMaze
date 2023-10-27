@@ -357,8 +357,9 @@
 "Assets/Scripts/Patroller.cs"
 "Assets/Scripts/Player.cs"
 "Assets/Scripts/Projectile.cs"
-"Assets/Scripts/Shooter.cs"
 "Assets/Scripts/Shooting.cs"
+"Assets/Scripts/Wanderer.cs"
+"Assets/Scripts/WanderRegion.cs"
 -langversion:9.0
 
 /deterministic
