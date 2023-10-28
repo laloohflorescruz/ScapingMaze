@@ -3,60 +3,36 @@ using UnityEngine.SceneManagement;
 
 public class LevelSelectUI : MonoBehaviour
 {
-    //Build index of the currently-loaded scene.
     private int currentScene = 0;
-
-    //Current scene's level view camera, if any.
     private GameObject levelViewCamera;
-
-    //Current ongoing scene loading operation, if any.
     private AsyncOperation currentLoadOperation;
 
-    //Method:
-    private void PlayCurrentLevel()
+    void PlayCurrentLevel()
     {
-        //Deactivate the level view camera:
         levelViewCamera.SetActive(false);
-
-        //Try to find the Player GameObject:
         var playerGobj = GameObject.Find("Player");
-
-        //Throw an error if we couldn't find it:
         if (playerGobj == null)
             Debug.LogError("Couldn't find a Player in the level!");
-        else //If we did find the player:
+        else
         {
-            //Get the Player script attached and enable it:
             var playerScript = playerGobj.GetComponent<Player>();
             playerScript.enabled = true;
-
-            //Through the player script, access the camera GameObject and activate it:
             playerScript.cam.SetActive(true);
-
-            //Destroy self; we'll come back when the main scene is loaded again:
             Destroy(this.gameObject);
         }
     }
 
-    //Unity events:
     void Start()
     {
-        //Make sure this object persists when the scene changes:
         DontDestroyOnLoad(gameObject);
     }
 
     void Update()
     {
-        //If we have a current load operation and it's done:
         if (currentLoadOperation != null && currentLoadOperation.isDone)
         {
-            //Null out the load operation:
             currentLoadOperation = null;
-
-            //Find the level view camera in the scene:
             levelViewCamera = GameObject.Find("Level View Camera");
-
-            //Log an error if we couldn't find the camera:
             if (levelViewCamera == null)
                 Debug.LogError("No level view camera was found in the scene!");
         }
@@ -64,38 +40,59 @@ public class LevelSelectUI : MonoBehaviour
 
     void OnGUI()
     {
-        GUILayout.Label("Scape Maze Game!");
+        GUIStyle levelStyle = new GUIStyle(GUI.skin.button);
+        levelStyle.alignment = TextAnchor.MiddleCenter;
+        levelStyle.fontSize = 25;
+        levelStyle.fontStyle = FontStyle.Bold;
 
-        //If this isn't the main menu:
+        GUILayout.Label("Scape Maze Game ", levelStyle);
+
+
+        // Check if the current scene is not the Main scene (scene with index 0)
         if (currentScene != 0)
         {
-            GUILayout.Label("Currently viewing Level " + currentScene);
-
-            //Show a PLAY button:
-            if (GUILayout.Button("PLAY"))
-            {
-                //If the button is clicked, start playing the level:
-                PlayCurrentLevel();
-            }
+            GUILayout.Label("Currently viewing Level " + currentScene.ToString().ToUpper(), levelStyle);
         }
-        else //If this is the main menu
+        else
+        {
             GUILayout.Label("Select a level to preview it.");
+        }
 
-        //Starting at scene build index 1, loop through the remaining scene indexes:
+        // Define the button width and height
+        float buttonWidth = 200f;
+        float buttonHeight = 150f;
+
+        // Define the vertical space between buttons
+        float buttonSpacing = 20f;
+
+        // Define the vertical position of the first button
+        float startY = 20f;
+
+        // Starting at scene build index 1, loop through the remaining scene indexes:
         for (int i = 1; i < SceneManager.sceneCountInBuildSettings; i++)
         {
-            //Show a button with text "Level [level number]"
-            if (GUILayout.Button("Level " + i))
+            // Check if the current scene index is not equal to the level being played (currentScene)
+            if (i != currentScene)
             {
-                //If that button is pressed, and we aren't already waiting for a scene to load:
-                if (currentLoadOperation == null)
-                {
-                    //Start loading the level asynchronously:
-                    currentLoadOperation = SceneManager.LoadSceneAsync(i);
+                // Calculate the horizontal position for the button (right side)
+                float startX = Screen.width - buttonWidth - 20f;
 
-                    //Set the current scene:
-                    currentScene = i;
+                // Draw the level button
+                if (GUI.Button(new Rect(startX, startY, buttonWidth, buttonHeight), "LEVEL " + i, levelStyle))
+                {
+                    if (currentLoadOperation == null)
+                    {
+                        currentLoadOperation = SceneManager.LoadSceneAsync(i);
+                        currentScene = i;
+                    }
                 }
+
+                // Load and display level thumbnail
+                Texture2D thumbnail = Resources.Load<Texture2D>("LevelThumbnails/Level" + i);
+                GUI.DrawTexture(new Rect(startX, startY + buttonHeight + buttonSpacing, buttonWidth, buttonHeight), thumbnail, ScaleMode.ScaleToFit);
+
+                // Increment the vertical position for the next button
+                startY += buttonHeight + buttonSpacing;
             }
         }
     }
