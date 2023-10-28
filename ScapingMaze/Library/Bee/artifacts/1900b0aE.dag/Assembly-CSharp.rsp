@@ -358,6 +358,7 @@
 "Assets/Scripts/Player.cs"
 "Assets/Scripts/Projectile.cs"
 "Assets/Scripts/Shooting.cs"
+"Assets/Scripts/ShootRandomly.cs"
 "Assets/Scripts/Wanderer.cs"
 "Assets/Scripts/WanderRegion.cs"
 -langversion:9.0

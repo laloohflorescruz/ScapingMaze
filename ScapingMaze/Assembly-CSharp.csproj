@@ -59,6 +59,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\WanderRegion.cs" />
+    <Compile Include="Assets\Scripts\ShootRandomly.cs" />
     <Compile Include="Assets\Scripts\Wanderer.cs" />
     <Compile Include="Assets\Scripts\Projectile.cs" />
     <Compile Include="Assets\Scripts\Goal.cs" />
