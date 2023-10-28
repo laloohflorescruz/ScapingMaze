@@ -6,11 +6,9 @@ public class Projectile : MonoBehaviour
     public Transform trans;
 
     [Header("Stats")]
-    [Tooltip("How many units the projectile will move forward per second.")]
     public float speed = 34;
-    [Tooltip("The distance the projectile will travel before it comes to a stop.")]
     public float range = 70;
-
+    private bool hasCollided = false;
     private Vector3 spawnPoint;
 
     void Start()
@@ -20,14 +18,38 @@ public class Projectile : MonoBehaviour
 
     void Update()
     {
+        if (hasCollided)
+        {
+            // If the projectile has collided, do nothing and return
+            return;
+        }
+
         // Move the projectile along its local Z axis (forward):
         trans.Translate(0, 0, speed * Time.deltaTime, Space.Self);
 
-        // Destroy the projectile if it has traveled to or past its range:
-        if (Vector3.Distance(trans.position, transform.parent.position) >= range)
-        //if (Vector3.Distance(trans.position, spawnPoint) >= range)
+        // Check if the projectile has hit something:
+        RaycastHit hit;
+        if (Physics.Raycast(trans.position, trans.forward, out hit, speed * Time.deltaTime))
         {
-            Destroy(gameObject);
+            // Check if the object hit has a name containing "Wall":
+            if (hit.collider.gameObject.name.Contains("Wall"))
+            {
+                // Reset the projectile position
+                trans.position = spawnPoint;
+                hasCollided = true; // Set the flag to true to indicate collision
+            }
         }
+
+        // Destroy the projectile if it has traveled to or past its range:
+        if (Vector3.Distance(trans.position, spawnPoint) >= range)
+        {
+            ResetProjectile();
+        }
+    }
+
+    public void ResetProjectile()
+    {
+        // Reset the collision flag when you want to start shooting again
+        hasCollided = false;
     }
 }
