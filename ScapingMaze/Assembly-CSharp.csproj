@@ -66,6 +66,7 @@
     <Compile Include="Assets\Scripts\Player.cs" />
     <Compile Include="Assets\Scripts\Hazard.cs" />
     <Compile Include="Assets\Scripts\Patroller.cs" />
+    <Compile Include="Assets\Scripts\LevelSelectUI.cs" />
     <Compile Include="Assets\Scripts\Shooting.cs" />
   </ItemGroup>
   <ItemGroup>

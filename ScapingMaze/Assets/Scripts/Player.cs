@@ -7,6 +7,7 @@ public class Player : MonoBehaviour
     public Transform trans;
     public Transform modelTrans;
     public CharacterController characterController;
+    public GameObject cam;
 
     // Movement
     [Header("Movement")]
@@ -192,13 +193,14 @@ public class Player : MonoBehaviour
     }
 
     // Call the Movement method in the Update method
-    private void Update()
+    void Update()
     {
-
-
-        Movement();
-        Dashing();
-
+        if (!paused)
+        {
+            Movement();
+            Dashing();
+        }
+        Pausing();
     }
 
     public void Die()
@@ -233,6 +235,25 @@ public class Player : MonoBehaviour
         if (collider != null)
         {
             Destroy(collider);
+        }
+    }
+
+
+
+    private bool paused = false;
+
+    private void Pausing()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            //Toggle pause status:
+            paused = !paused;
+            //If we're now paused, set timeScale to 0:
+            if (paused)
+                Time.timeScale = 0;
+            //Otherwise if we're no longer paused, revert timeScale to 1:
+            else
+                Time.timeScale = 1;
         }
     }
 }
