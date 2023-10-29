@@ -81,6 +81,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2130833292912761712, guid: e4ecbf95d0ed1af45bdcbd0cef22bd5e, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: b96c7d3161b1e59468451a9d7cbe5ba9, type: 2}
     - target: {fileID: 3051919855938786022, guid: e4ecbf95d0ed1af45bdcbd0cef22bd5e, type: 3}
       propertyPath: spawnPoint
       value: 
@@ -93,6 +97,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Shooter
       objectReference: {fileID: 0}
+    - target: {fileID: 4232344067323980653, guid: e4ecbf95d0ed1af45bdcbd0cef22bd5e, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: b96c7d3161b1e59468451a9d7cbe5ba9, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
