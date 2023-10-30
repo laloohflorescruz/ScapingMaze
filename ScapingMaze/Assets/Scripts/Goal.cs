@@ -1,28 +1,40 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-
 public class Goal : MonoBehaviour
 {
-
     public float rotationGoal = 150f;
+    public AudioClip winSound; // Assign your audio clip in the Unity editor
+    private AudioSource audioSource;
+
+    void Start()
+    {
+        audioSource = GetComponent<AudioSource>(); // Get the AudioSource component attached to this GameObject
+    }
+
     void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.layer == 3)
-            SceneManager.LoadScene("main");
+        {
+            // Play the win sound
+            if (winSound != null && audioSource != null)
+            {
+                audioSource.PlayOneShot(winSound);
+            }
+
+            // Load the "main" scene after a delay
+            Invoke("LoadMainScene", 2f); // Load the scene after 2 seconds (adjust the delay as needed)
+        }
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
     void Update()
     {
-
         float angle = rotationGoal * Time.deltaTime;
         transform.Rotate(Vector3.down * angle, Space.World);
+    }
+
+    void LoadMainScene()
+    {
+        SceneManager.LoadScene("main");
     }
 }

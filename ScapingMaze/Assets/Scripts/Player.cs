@@ -8,6 +8,7 @@ public class Player : MonoBehaviour
     public Transform modelTrans;
     public CharacterController characterController;
     public GameObject cam;
+    public AudioSource dieAudio;
 
     // Movement
     [Header("Movement")]
@@ -213,9 +214,14 @@ public class Player : MonoBehaviour
             enabled = false;
             characterController.enabled = false;
             modelTrans.gameObject.SetActive(false);
+
+            // Play death audio if assigned
+            if (dieAudio != null)
+            {
+                dieAudio.Play();
+            }
         }
         dashBeginTime = Mathf.NegativeInfinity;
-
     }
     public void Respawn()
     {
