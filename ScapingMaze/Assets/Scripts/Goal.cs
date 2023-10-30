@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 public class Goal : MonoBehaviour
 {
 
+    public float rotationGoal = 150f;
     void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.layer == 3)
@@ -21,5 +22,7 @@ public class Goal : MonoBehaviour
     void Update()
     {
 
+        float angle = rotationGoal * Time.deltaTime;
+        transform.Rotate(Vector3.down * angle, Space.World);
     }
 }
