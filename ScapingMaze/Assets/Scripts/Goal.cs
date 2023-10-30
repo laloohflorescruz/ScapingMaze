@@ -4,26 +4,24 @@ using UnityEngine.SceneManagement;
 public class Goal : MonoBehaviour
 {
     public float rotationGoal = 150f;
-    public AudioClip winSound; // Assign your audio clip in the Unity editor
-    private AudioSource audioSource;
+
+    public AudioSource winSound;
+
 
     void Start()
     {
-        audioSource = GetComponent<AudioSource>(); // Get the AudioSource component attached to this GameObject
     }
 
     void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.layer == 3)
         {
-            // Play the win sound
-            if (winSound != null && audioSource != null)
+            if (winSound != null)
             {
-                audioSource.PlayOneShot(winSound);
+                winSound.Play();
             }
-
             // Load the "main" scene after a delay
-            Invoke("LoadMainScene", 2f); // Load the scene after 2 seconds (adjust the delay as needed)
+            Invoke("LoadMainScene", 0.5f); // Load the scene after 2 seconds (adjust the delay as needed)
         }
     }
 

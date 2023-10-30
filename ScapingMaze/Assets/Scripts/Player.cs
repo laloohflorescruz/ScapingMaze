@@ -9,6 +9,7 @@ public class Player : MonoBehaviour
     public CharacterController characterController;
     public GameObject cam;
     public AudioSource dieAudio;
+    public AudioSource winAudio;
 
     // Movement
     [Header("Movement")]
@@ -223,6 +224,21 @@ public class Player : MonoBehaviour
         }
         dashBeginTime = Mathf.NegativeInfinity;
     }
+
+    /*public void Die()
+    {
+        if (!dead)
+        {
+            dead = true;
+            gameManager.ShowDeathMessage(); // Show the death message
+            Invoke("Respawn", respawnWaitTime);
+            movementVelocity = Vector3.zero;
+            enabled = false;
+            characterController.enabled = false;
+            modelTrans.gameObject.SetActive(false);
+        }
+        dashBeginTime = Mathf.NegativeInfinity;
+    }*/
     public void Respawn()
     {
         dead = false;
@@ -233,6 +249,8 @@ public class Player : MonoBehaviour
         modelTrans.rotation = spawnRotation;
 
     }
+
+
 
     // Remove Box Collider component
     void RemoveBoxCollider(GameObject gameObject)
