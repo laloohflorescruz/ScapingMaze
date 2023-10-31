@@ -21,7 +21,7 @@ public class Goal : MonoBehaviour
                 winSound.Play();
             }
             // Load the "main" scene after a delay
-            Invoke("LoadMainScene", 0.5f); // Load the scene after 2 seconds (adjust the delay as needed)
+            Invoke("LoadMainScene", 1f); // Load the scene after 2 seconds (adjust the delay as needed)
         }
     }
 
