@@ -6,7 +6,7 @@ This game is part of a project for FDU University for  Computer Game Programming
 
 
 ## Here you can find a Document where explains how to play it.
-[Here](https://www.eduardoflores.name/scapemaze/game_summary.zip)
+[Here](https://www.eduardoflores.name/scapemaze/game_summary.pdf)
 
 
 ## Here you can find the exec game
