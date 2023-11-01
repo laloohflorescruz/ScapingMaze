@@ -1,4 +1,4 @@
-## Library Management System
+## Scaping Maze
 
 This is a Maze game project built using  Unity 3D and C#.
 
