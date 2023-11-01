@@ -1,7 +1,6 @@
 ScriptsOnlyBuild:
   usedScripts:
     Assembly-CSharp.dll:
-    - GameManager
     - Goal
     - Hazard
     - LevelSelectUI
@@ -26,9 +25,6 @@ ScriptsOnlyBuild:
     - TMPro.TMP_Settings
     - TMPro.TMP_SpriteAsset
     - TMPro.TMP_StyleSheet
-    Unity.TextMeshPro.dll:
-    - TMPro.TMP_FontAsset
-    - TMPro.TextMeshProUGUI
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
     - UnityEditor.TestTools.TestRunner.TestListCacheData
@@ -36,8 +32,6 @@ ScriptsOnlyBuild:
     UnityEngine.UI.dll:
     - UnityEngine.EventSystems.EventSystem
     - UnityEngine.EventSystems.StandaloneInputModule
-    - UnityEngine.UI.CanvasScaler
-    - UnityEngine.UI.GraphicRaycaster
   serializedClasses:
     Cinemachine:
     - Cinemachine.CinemachineBlendDefinition
@@ -59,7 +53,6 @@ ScriptsOnlyBuild:
     - TMPro.TMP_SpriteCharacter
     - TMPro.TMP_SpriteGlyph
     - TMPro.TMP_Style
-    - TMPro.VertexGradient
     UnityEngine.CoreModule:
     - UnityEngine.Events.PersistentCallGroup
     UnityEngine.TextCoreFontEngineModule:
@@ -67,8 +60,6 @@ ScriptsOnlyBuild:
     - UnityEngine.TextCore.Glyph
     - UnityEngine.TextCore.GlyphMetrics
     - UnityEngine.TextCore.GlyphRect
-    UnityEngine.UI:
-    - UnityEngine.UI.MaskableGraphic/CullStateChangedEvent
   methodsToPreserve: []
   sceneClasses:
     Assets/Scenes/level1.unity:
@@ -119,40 +110,28 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 2794}
     - Class: 114
-      Script: {instanceID: 2850}
+      Script: {instanceID: 3564}
     - Class: 114
-      Script: {instanceID: 3562}
+      Script: {instanceID: 4118}
     - Class: 114
-      Script: {instanceID: 4116}
+      Script: {instanceID: 4218}
     - Class: 114
-      Script: {instanceID: 4216}
+      Script: {instanceID: 4836}
     - Class: 114
-      Script: {instanceID: 4834}
+      Script: {instanceID: 4980}
     - Class: 114
-      Script: {instanceID: 4978}
+      Script: {instanceID: 5740}
     - Class: 114
-      Script: {instanceID: 5198}
+      Script: {instanceID: 5786}
     - Class: 114
-      Script: {instanceID: 5738}
+      Script: {instanceID: 6004}
     - Class: 114
-      Script: {instanceID: 5768}
+      Script: {instanceID: 6264}
     - Class: 114
-      Script: {instanceID: 5784}
+      Script: {instanceID: 7366}
     - Class: 114
-      Script: {instanceID: 5942}
-    - Class: 114
-      Script: {instanceID: 6002}
-    - Class: 114
-      Script: {instanceID: 6262}
-    - Class: 114
-      Script: {instanceID: 7364}
-    - Class: 114
-      Script: {instanceID: 7384}
-    - Class: 114
-      Script: {instanceID: 62892}
+      Script: {instanceID: 7386}
     - Class: 115
-      Script: {instanceID: 0}
-    - Class: 128
       Script: {instanceID: 0}
     - Class: 135
       Script: {instanceID: 0}
@@ -163,12 +142,6 @@ ScriptsOnlyBuild:
     - Class: 157
       Script: {instanceID: 0}
     - Class: 196
-      Script: {instanceID: 0}
-    - Class: 222
-      Script: {instanceID: 0}
-    - Class: 223
-      Script: {instanceID: 0}
-    - Class: 224
       Script: {instanceID: 0}
     Assets/Scenes/level2.unity:
     - Class: 1
@@ -216,27 +189,27 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 2794}
     - Class: 114
-      Script: {instanceID: 3562}
+      Script: {instanceID: 3564}
     - Class: 114
-      Script: {instanceID: 4116}
+      Script: {instanceID: 4118}
     - Class: 114
-      Script: {instanceID: 4216}
+      Script: {instanceID: 4218}
     - Class: 114
-      Script: {instanceID: 4834}
+      Script: {instanceID: 4836}
     - Class: 114
-      Script: {instanceID: 4978}
+      Script: {instanceID: 4980}
     - Class: 114
-      Script: {instanceID: 5738}
+      Script: {instanceID: 5740}
     - Class: 114
-      Script: {instanceID: 5784}
+      Script: {instanceID: 5786}
     - Class: 114
-      Script: {instanceID: 6002}
+      Script: {instanceID: 6004}
     - Class: 114
-      Script: {instanceID: 6262}
+      Script: {instanceID: 6264}
     - Class: 114
-      Script: {instanceID: 7364}
+      Script: {instanceID: 7366}
     - Class: 114
-      Script: {instanceID: 7384}
+      Script: {instanceID: 7386}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 135
@@ -281,13 +254,13 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 2628}
     - Class: 114
-      Script: {instanceID: 4068}
+      Script: {instanceID: 4070}
     - Class: 114
-      Script: {instanceID: 4184}
+      Script: {instanceID: 4186}
     - Class: 114
-      Script: {instanceID: 4450}
+      Script: {instanceID: 4452}
     - Class: 114
-      Script: {instanceID: 5198}
+      Script: {instanceID: 5200}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -529,7 +502,7 @@ ScriptsOnlyBuild:
     className: CinemachineHardLookAt
   - hash:
       serializedVersion: 2
-      Hash: b03b8a7501696fd08ad0a133ec7018f3
+      Hash: 7e4a22f003cf9c9e089b7bc033d1a18b
     assemblyName: Assembly-CSharp
     namespaceName: 
     className: Goal
@@ -1231,7 +1204,7 @@ ScriptsOnlyBuild:
     className: CinemachineSameAsFollowTarget
   - hash:
       serializedVersion: 2
-      Hash: b7b7ee1e64d8c968c7170a584f810007
+      Hash: f5395964a53e5b898790230efb0d6210
     assemblyName: Assembly-CSharp
     namespaceName: 
     className: Player
@@ -1679,15 +1652,9 @@ ScriptsOnlyBuild:
     assemblyName: Unity.VisualScripting.Core
     namespaceName: Unity.VisualScripting
     className: UnityOnSliderValueChangedMessageListener
-  - hash:
-      serializedVersion: 2
-      Hash: 44756ab7bf559e74e8e3adbecf6b8f62
-    assemblyName: Assembly-CSharp
-    namespaceName: 
-    className: GameManager
   platform: 19
   scenePathNames:
   - Assets/Scenes/main.unity
   - Assets/Scenes/level1.unity
   - Assets/Scenes/level2.unity
-  playerPath: C:/Users/eflor/Desktop/algo/New folder/ScapingMaze.exe
+  playerPath: C:/holis/MSACS/CSCI/CSCI_ 6617 - Computer Game Programming/Mid Term/ScapingMaze/ScapingMaze.exe
