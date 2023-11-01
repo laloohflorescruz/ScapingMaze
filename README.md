@@ -65,7 +65,6 @@ git clone https://github.com/laloohflorescruz/ScapingMaze.git
  
 <img src="ScapingMaze/img/player.png"/>
 <img src="ScapingMaze/img/playerSide.png"/>
-<img src="ScapingMaze/img/enemyfront.png"/>
 <img src="ScapingMaze/img/fastShooter.png"/>
 <img src="ScapingMaze/img/randomShooter.png"/>
 <img src="ScapingMaze/img/projectile.png"/>
