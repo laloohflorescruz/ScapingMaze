@@ -1,4 +1,4 @@
-## Library Management System
+## Scaping Maze
 
 This is a Maze game project built using  Unity 3D and C#.
 
@@ -62,26 +62,25 @@ git clone https://github.com/laloohflorescruz/ScapingMaze.git
 
 
 ## Characters Pictures
-
-<img src="/img/player.png"/>
-<img src="/img/playerSide.png"/>
-<img src="/img/enemyfront.png"/>
-<img src="/img/fastShooter.png"/>
-<img src="/img/randomShooter.png"/>
-<img src="/img/projectile.png"/>
-<img src="/img/shooter.png"/>
-<img src="/img/patrollerEnemy.png"/>
+ 
+<img src="img/player.png"/>
+<img src="img/playerSide.png"/>
+<img src="img/fastShooter.png"/>
+<img src="img/randomShooter.png"/>
+<img src="img/projectile.png"/>
+<img src="img/shooter.png"/>
+<img src="img/patrollerEnemy.png"/>
 
 
 ## Scenarios Pictures
 
-<img src="/img/levelSelection.png"/>
-<img src="/img/levelMain2.png"/>
-<img src="/img/levelMain3.png"/>
-<img src="/img/levelMain4.png"/>
-<img src="/img/level2Main.png"/>
-<img src="/img/level2Main2.png"/>
-<img src="/img/level2Main3.png"/>
+<img src="img/levelSelection.png"/>
+<img src="img/levelMain2.png"/>
+<img src="img/levelMain3.png"/>
+<img src="img/levelMain4.png"/>
+<img src="img/level2Main.png"/>
+<img src="img/level2Main2.png"/>
+<img src="img/level2Main3.png"/>
 
 
 
